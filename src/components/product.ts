@@ -10,8 +10,8 @@ export const ProductTemplate = (product: Product) => {
                 <div class="card-body">
                     <h5 class="card-title">${product.name}</h5>
                     <p class="card-text">${product.description}</p>
-                    <p class="card-text">${ product.price +" LYD"}</p>
-                    <a href="#" class="btn btn-primary">Add to Cart</a>
+                    <p class="card-text">${product.price +" LYD"}</p>
+                    <a href="/product/${product.id}" class="btn btn-primary">View Product</a>
                 </div>
             </div>
         </div>
