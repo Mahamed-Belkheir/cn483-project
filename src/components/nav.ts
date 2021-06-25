@@ -12,7 +12,7 @@ export const NavbarTemplate = (isAuth: boolean) => {
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto">
-                    ${isAuth ?
+                    ${(!isAuth) ?
                         html`
                         <li class="nav-item">
                             <a class="nav-link" href="#">Signin</a>

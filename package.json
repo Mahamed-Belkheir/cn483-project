@@ -5,7 +5,8 @@
     "test": "jest",
     "build": "tsc",
     "watch": "tsc -w",
-    "express": "node dist/application/express/index.js"
+    "express": "node dist/application/express/index.js",
+    "express:watch": "nodemon dist/application/express/index.js"
   },
   "dependencies": {
     "argon2": "^0.28.2",
