@@ -36,7 +36,7 @@ export const controllers = {
 export const qufl = new Qufl({
 	secret: config.server.secret,
 	passError: true,
-	cookieKey: "KEYMEISTER_SESSION"
+	cookieKey: "EXEMPLI_SESSION"
 })
 
 
