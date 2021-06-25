@@ -1,0 +1,7 @@
+{
+    "version": "0.1.5",
+    "project-name": "exempli-commerce",
+    "application": "express",
+    "database": "objection",
+    "api": "v1"
+}
