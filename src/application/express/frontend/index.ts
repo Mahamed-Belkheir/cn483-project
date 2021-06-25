@@ -4,6 +4,7 @@ import { BaseTemplate } from "../../../components/base";
 import { NavbarTemplate } from "../../../components/nav";
 import { ProductTemplate } from "../../../components/product";
 import { SearchTemplate } from "../../../components/search";
+import fs from "fs";
 
 const router = Router()
 
@@ -23,5 +24,16 @@ router.get('/', async (_, res, next) => {
         next(e)
     }
 })
+
+let dirs = fs.readdirSync(__dirname);
+
+for(let dir of dirs) {
+    dir = "/" + dir.replace(/(\.ts)$|(\.js)$/gi, "")
+    if (dir.includes(".map"))
+        continue
+    let r = require( "." + dir);
+    if (typeof r.default == "function")
+        router.use(dir, r.default)
+}
 
 export default router;

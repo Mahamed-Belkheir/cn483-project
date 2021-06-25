@@ -9,6 +9,7 @@
     "express:watch": "nodemon dist/application/express/index.js"
   },
   "dependencies": {
+    "@types/cookie-parser": "^1.4.2",
     "ajv": "^8.6.0",
     "ajv-formats": "^2.1.0",
     "argon2": "^0.28.2",

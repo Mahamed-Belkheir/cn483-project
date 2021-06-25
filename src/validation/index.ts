@@ -31,7 +31,6 @@ const userSchema = {
     type: "object",
     properties: {
         email: { type: "string", format: "email", maxLength: 40 },
-        phone: { type: "string", minLength: 9, maxLength: 12 },
         first_name: { type: "string", minLength: 2, maxLength: 40 },
         last_name: { type: "string", maxLength: 40 },
         password: { type: "string", minLength: 8, maxLength: 40 },

@@ -2,7 +2,7 @@
 
 const client = process.env.DATABASE || "sqlite3";
 
-const connection = {
+const connection = client === "sqlite3" ? "test.db" : {
   database: process.env.DB_NAME || "db",
   user: process.env.DB_USER || "user" , 
   password: process.env.DB_PASS || "password",

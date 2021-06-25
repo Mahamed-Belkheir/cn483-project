@@ -8,6 +8,8 @@ import { ProductModel } from '../models/objection/product'
 import { ProductController } from '../controllers/product'
 import Qufl from 'qufl'
 import { config } from './config'
+import { Request } from 'express'
+
 export const models = {
 	order:	new OrderModel(),
 
@@ -39,5 +41,8 @@ export const qufl = new Qufl({
 	cookieKey: "EXEMPLI_SESSION"
 })
 
+qufl.extractorMapping["token"] = qufl.extractors["cookie"];
+
+export const checkCookie = (req: Request) => !!req.cookies[qufl.cookieKey()]
 
 export const cookieMaxAge = 1000 * 60 * 60 * 24 * 7;

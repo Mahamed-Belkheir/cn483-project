@@ -19,6 +19,6 @@ export class UserController {
     public async signup(userData: Omit<User, "id">) {
         let [user] = await this.users.read({email: userData.email});
         if (user) throw new BadRequest("email already in use");
-        await this.users.create(user);
+        await this.users.create(userData);
     }
 }
