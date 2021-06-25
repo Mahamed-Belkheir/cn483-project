@@ -1,5 +1,6 @@
 import { Model, BaseModel } from "./base";
 import { User, UserModelInterface } from "../interfaces/user";
+import argon2 from "argon2";
 
 export class UserObjectionModel extends Model implements User {
     id: number
@@ -9,18 +10,26 @@ export class UserObjectionModel extends Model implements User {
     last_name: string
 
     static tableName = "users";
-    static jsonSchema = {
-        type: "object",
-        attributes: {
-            id: { type: "number" },
-            email: { type: "string" },
-            password: { type: "string" },
-            first_name: { type: "string" },
-            last_name: { type: "string" },
-        }
-    }
 }
 
 export class UserModel extends BaseModel<User> implements UserModelInterface {
     model = UserObjectionModel
+
+    async create(data: Omit<User, "id">) {
+        data.password = await argon2.hash(data.password);
+        data.email = data.email.toLowerCase();
+        return super.create(data)
+    }
+
+    async update(id: number, data: Partial<User>) {
+        if (data.password)
+            data.password = await argon2.hash(data.password);
+        if (data.email)
+            data.email = data.email.toLowerCase();
+        return super.update(id, data)
+    }
+
+    comparePassword(password: string, hash: string) {
+        return argon2.verify(hash, password)
+    }
 }

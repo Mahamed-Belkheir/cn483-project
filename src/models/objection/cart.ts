@@ -6,13 +6,6 @@ export class CartObjectionModel extends Model implements Cart {
     user_id: number
 
     static tableName = "carts";
-    static jsonSchema = {
-        type: "object",
-        attributes: {
-            id: { type: "number" },
-            user_id: { type: "number" },
-        }
-    }
 }
 
 export class CartModel extends BaseModel<Cart> implements CartModelInterface {

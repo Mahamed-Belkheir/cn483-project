@@ -9,5 +9,5 @@ export interface User {
 }
 
 export interface UserModelInterface extends BaseInterface<User> {
-
+    comparePassword(password: string, hash: string): Promise<boolean>
 }

@@ -9,16 +9,6 @@ export class ProductObjectionModel extends Model implements Product {
     image_url: string
 
     static tableName = "products";
-    static jsonSchema = {
-        type: "object",
-        attributes: {
-            id: { type: "number" },
-            name: { type: "string" },
-            description: { type: "string" },
-            price: { type: "number" },
-            image_url: { type: "string" },
-        }
-    }
 }
 
 export class ProductModel extends BaseModel<Product> implements ProductModelInterface {

@@ -5,7 +5,7 @@ exports.up = function(knex) {
 		table.integer("user_id")
 		table.datetime("timestamp")
 		table.integer("total")
-		table.string("items")
+		table.specificType("items", "jsonb[]")
     })
   };
   
