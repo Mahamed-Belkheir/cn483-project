@@ -1,3 +1,4 @@
+import { BadRequest, NotFound, Unauthorized } from "../exceptions";
 import { UserModelInterface, User } from "../models/interfaces/user"
 
 
@@ -6,19 +7,18 @@ export class UserController {
         private users: UserModelInterface,
     ) {}
 
-    public async read(query: Partial<User>) {
-        return this.users.read(query);
+    public async signin(details: { email: string, password: string }) {
+        let [user] = await this.users.read({email: details.email});
+        if (!user) throw new NotFound("email");
+        if (!await this.users.comparePassword(details.password, user.password)) {
+            throw new Unauthorized("wrong password");
+        }
+        return { ...user, password: undefined };
     }
 
-    public async create(data: Omit<User, "id">) {
-        await this.users.create(data);
-    }
-
-    public async update(id: number, query: Partial<User>) {
-        await this.users.update(id, query);
-    }
-
-    public async delete(id: number) {
-        await this.users.delete(id);
+    public async signup(userData: Omit<User, "id">) {
+        let [user] = await this.users.read({email: userData.email});
+        if (user) throw new BadRequest("email already in use");
+        await this.users.create(user);
     }
 }

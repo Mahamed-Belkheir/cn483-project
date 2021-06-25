@@ -1,12 +1,14 @@
 import { Router } from "express";
 import { controllers } from "../../../../dependency"
+import { validate } from "../../../../validation";
 
 const router = Router()
 
 //@ts-ignore
-router.get('/', async (req, res, next) => {
+router.post('/signin', async (req, res, next) => {
     try {
-        let data = await controllers.user.read(req.query);
+        validate.signin(req.body);
+        let data = await controllers.user.signin(req.body);
         res.send({
             status: 'success',
             data
@@ -17,9 +19,10 @@ router.get('/', async (req, res, next) => {
 })
 
 //@ts-ignore
-router.post('/', async (req, res, next) => {
+router.post('/signup', async (req, res, next) => {
     try {
-        await controllers.user.create(req.body);
+        validate.user(req.body);
+        await controllers.user.signup(req.body);
         res.send({
             status: 'success'
         })
@@ -27,32 +30,5 @@ router.post('/', async (req, res, next) => {
         next(e)
     }
 })
-
-//@ts-ignore
-router.patch('/:id', async (req, res, next) => {
-    try {
-        let id = Number(req.params.id);
-        await controllers.user.update(id, req.body);
-        res.send({
-            status: 'success'
-        })
-    } catch (e) {
-        next(e)
-    }
-})
-
-//@ts-ignore
-router.delete('/:id', async (req, res, next) => {
-    try {
-        let id = Number(req.params.id);
-        await controllers.user.delete(id);
-        res.send({
-            status: 'success'
-        })
-    } catch (e) {
-        next(e)
-    }
-})
-
 
 export default router;

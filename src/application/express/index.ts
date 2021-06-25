@@ -8,6 +8,7 @@ const server = Express();
 const port = config.server.port;
     
 server.use(Express.json())
+server.use(Express.urlencoded())
 server.use('/', frontend)
 server.use('/api', routers);
 
