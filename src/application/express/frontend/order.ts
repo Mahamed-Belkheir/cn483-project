@@ -14,7 +14,7 @@ router.get('/', qufl.auth({ aud: "user" }), async (req, res, next) => {
             <div class="container">
 
                 <div class="row d-flex mt-5 justify-content-center">
-                    <h3>Cart</h3>
+                    <h3>Orders history</h3>
                 </div>
                 ${OrderTemplate(orders)}
             </div>
