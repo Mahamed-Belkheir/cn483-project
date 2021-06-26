@@ -22,7 +22,7 @@ export const SignupTemplate = (error?: Error) => {
                         </div>
 
                         <div class="d-flex mt-5 flex-column">
-                            <button type="submit"  class="mt-3 btn btn-primary btn">Sign un</button>
+                            <button type="submit"  class="mt-3 btn btn-primary btn">Sign up</button>
                             <a href="/signin" class="mt-3 btn btn-light btn-sm border">Sign in</a>
                         </div>
                         ${(()=>{
