@@ -1,12 +1,12 @@
 import BaseInterface from "./base";
-import { Product } from "./product";
+import { CartItem } from "./carti-tem";
 
 export interface Order {
 	id: number
 	user_id: number
 	timestamp: Date
 	total: number
-	items: Product[]
+	items: CartItem[]
 }
 
 export interface OrderModelInterface extends BaseInterface<Order> {

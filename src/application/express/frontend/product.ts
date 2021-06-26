@@ -18,7 +18,7 @@ router.get('/:id', async (req, res, next) => {
         <div clas="container-fluid">
             ${SearchTemplate()}
             <div class="row d-flex border-light mt-5 justify-content-center">
-                ${ProductViewTemplate(product)}
+                ${ProductViewTemplate(product, checkCookie(req))}
             </div>
         </div>
         `
@@ -44,7 +44,7 @@ router.post('/:id', qufl.auth({aud: "user"}), async(req, res, next) => {
             ${SearchTemplate()}
             <div class="alert alert-success d-flex justify-content-center">Added item to cart</div>
             <div class="row d-flex border-light mt-5 justify-content-center">
-                ${ProductViewTemplate(product)}
+                ${ProductViewTemplate(product, checkCookie(req))}
             </div>
         </div>
         `

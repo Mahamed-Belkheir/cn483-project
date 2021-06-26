@@ -1,7 +1,7 @@
 import { htmlFragment as html } from "lit-ntml"
 import { Product } from "../models/interfaces/product"
 
-export const ProductViewTemplate = (product: Product) => {
+export const ProductViewTemplate = (product: Product, isAuth: boolean) => {
     return html`
         <div class="row ms-5 d-flex m-3 justify-content-center">
             <div class="col-2 ms-5">
@@ -17,10 +17,13 @@ export const ProductViewTemplate = (product: Product) => {
                 <div class="row">
                     <p>${product.price +" LYD"}</p>
                 </div>
+                ${ isAuth ? html`
                 <form method="POST" class="d-flex align-items-center">
                     <input class="form-control" style="width: 5rem; height: 20%" type="number" min="1" max="50" value="1" name="quantity">
                     <button type="submit" class="btn ms-2 btn-success"> Add to Cart</button>
                 </form>
+                ` : html` <a href="/signin" class="btn btn-light border" > Signin </a>` 
+                }
             </div>
             
         </div>

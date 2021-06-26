@@ -1,13 +1,13 @@
 import { Model, BaseModel } from "./base";
 import { Order, OrderModelInterface } from "../interfaces/order";
-import { Product } from "../interfaces/product";
+import { CartItem } from "../interfaces/carti-tem";
 
 export class OrderObjectionModel extends Model implements Order {
     id: number
     user_id: number
     timestamp: Date
     total: number
-    items: Product[]
+    items: CartItem[]
 
     static tableName = "orders";
 }

@@ -6,6 +6,10 @@ export class OrderController {
         private orders: OrderModelInterface,
     ) {}
 
+    public async getUserOrders(id: number) {
+        return this.orders.read({user_id: id}, ["product"])
+    }
+
     public async read(query: Partial<Order>) {
         return this.orders.read(query);
     }

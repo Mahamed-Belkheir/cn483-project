@@ -47,5 +47,32 @@ router.get('/remove/:id', qufl.auth({ aud: "user" }), async (req, res, next) => 
     }
 })
 
+router.get('/buy', qufl.auth({ aud: "user" }), async (req, res, next) => {
+    try {
+        let items = await controllers.cartitem.getUserCart(+req.qufl.sub)
+
+        await controllers.order.create({
+            items: JSON.parse(JSON.stringify(items)),
+            timestamp: new Date(),
+            total: items.reduce((total, i) => total + (i.quantity * i.product!.price), 0),
+            user_id: +req.qufl.sub
+        })
+        await controllers.cartitem.clearUserCart(+req.qufl.sub);
+        let page = html`
+            ${NavbarTemplate(true)}
+            <div class="container">
+                <div class="alert alert-success"> Order created! </div>
+                <div class="row d-flex mt-5 justify-content-center">
+                    <h3>Cart</h3>
+                </div>
+                ${CartTemplate([])}
+            </div>
+        `
+        res.contentType('html').send(await BaseTemplate(page));
+    } catch (e) {
+        next(e)
+    }
+})
+
 
 export default router;
