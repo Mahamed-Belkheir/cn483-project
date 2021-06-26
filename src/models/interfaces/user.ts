@@ -1,4 +1,5 @@
 import BaseInterface from "./base";
+import { CartItem } from "./carti-tem";
 
 export interface User {
 	id: number
@@ -6,6 +7,7 @@ export interface User {
 	password: string
 	first_name: string
 	last_name: string
+	cart?: CartItem[]	
 }
 
 export interface UserModelInterface extends BaseInterface<User> {

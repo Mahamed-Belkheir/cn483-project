@@ -6,6 +6,7 @@ exports.up = function(knex) {
 		table.datetime("timestamp")
 		table.integer("total")
 		table.specificType("items", "jsonb[]")
+        table.foreign("user_id").references("users.id")
     })
   };
   

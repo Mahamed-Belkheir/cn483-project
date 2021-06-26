@@ -21,4 +21,5 @@ export class UserController {
         if (user) throw new BadRequest("email already in use");
         await this.users.create(userData);
     }
+
 }

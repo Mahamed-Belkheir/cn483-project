@@ -22,7 +22,7 @@ export const NavbarTemplate = (isAuth: boolean) => {
                         </li>` :
                         html`
                         <li class="nav-item">
-                            <a class="nav-link disabled" href="#">Cart</a>
+                            <a class="nav-link" href="/cart">Cart</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/signout">Signout</a>
